@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-inpox',
   templateUrl: './inpox.component.html',
-  styleUrls: ['./inpox.component.css']
 })
 export class InpoxComponent implements OnInit {
 

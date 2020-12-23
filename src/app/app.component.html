@@ -1,84 +1,240 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div>
-  <nav class="bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center">
-          <div class="flex-shrink-0">
+   <div class="h-screen fixed z-50 transition-all duration-200" [ngClass]="{'w-full sm:w-60': sidebarOpen, 'sm:w-16': !sidebarOpen}">
+      <nav class="bg-gray-800 border-r border-gray-700">
+          <div class="flex items-center justify-between h-16 px-4">
             <img
-              class="h-8 w-8"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-              alt="Workflow"
-            />
+            *ngIf="sidebarOpen"
+                class="h-8 w-8"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                alt="Workflow"
+                />
+            <svg (click)="sidebarOpen=!sidebarOpen" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="cursor-pointer text-gray-300 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a
-                routerLink="dashboard"
-                class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Dashboard</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Team</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Projects</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Calendar</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Reports</a
-              >
+        </nav>
+      <div class="h-full py-5 bg-white" [ngClass]="{'hidden sm:block': !sidebarOpen}">
+        <ng-template #dot><div class="flex items-center justify-center mb-2"><span class="bg-gray-500 rounded-full w-1 h-1"></span></div></ng-template>
+        <div class="mb-4">
+          <p class="text-gray-500 text-xs font-semibold uppercase tracking-wide mb-2 px-5" *ngIf="sidebarOpen; else dot">Main</p>
+          <ul class="text-gray-800 text-sm font-semibold tracking-wide">
+            <li class="py-2 px-5 text-purple-400 border-l-4 border-purple-400 flex items-center relative group cursor-pointer" [ngClass]="{'justify-center': !sidebarOpen}"> <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> <span class="ml-3" *ngIf="sidebarOpen">Dashboard</span> 
+              <div class="opacity-0 w-28 bg-gray-800 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 -left-1 ml-14 px-3 pointer-events-none" *ngIf="!sidebarOpen">
+              Dashboard
             </div>
-          </div>
+          </li>
+          </ul>
         </div>
-        <div class="hidden md:block">
-          <div class="ml-4 flex items-center md:ml-6">
-            <div class="relative mx-auto text-gray-600">
-              <input
-                class="bg-gray-800 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                type="search"
-                name="search"
-                placeholder="Search"
-              />
-              <button type="submit" class="absolute right-0 bottom-3 mt-5 mr-4">
+        <div class="mb-4">
+          <p class="text-gray-500 text-xs font-semibold uppercase tracking-wide mb-2 px-5" *ngIf="sidebarOpen; else dot">Web Apps</p>
+          <ul class="text-gray-800 text-sm font-semibold tracking-wide">
+            <li class="py-2 px-5 flex items-center relative group cursor-pointer hover:text-purple-400 transition-all duration-200" [ngClass]="{'justify-center': !sidebarOpen}"> <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> <span class="ml-3" *ngIf="sidebarOpen">Email</span> 
+            <div class="opacity-0 w-28 bg-gray-800 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 -left-1 ml-14 px-3 pointer-events-none" *ngIf="!sidebarOpen">
+              Email
+            </div>
+            </li>
+            <li class="py-2 px-5 flex items-center relative group cursor-pointer hover:text-purple-400 transition-all duration-200" [ngClass]="{'justify-center': !sidebarOpen}"> <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg> <span class="ml-3" *ngIf="sidebarOpen">Chat</span> 
+            <div class="opacity-0 w-28 bg-gray-800 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 -left-1 ml-14 px-3 pointer-events-none" *ngIf="!sidebarOpen">
+              Chat
+            </div>
+            </li>
+            <li class="py-2 px-5 flex items-center relative group cursor-pointer hover:text-purple-400 transition-all duration-200" [ngClass]="{'justify-center': !sidebarOpen}"> <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> <span class="ml-3" *ngIf="sidebarOpen">Calender</span> 
+            <div class="opacity-0 w-28 bg-gray-800 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 -left-1 ml-14 px-3 pointer-events-none" *ngIf="!sidebarOpen">
+              Calender
+            </div>
+            </li>
+          </ul>
+        </div>
+        <div class="mb-4">
+          <p class="text-gray-500 text-xs font-semibold uppercase tracking-wide mb-2 px-5" *ngIf="sidebarOpen; else dot">Special Pages</p>
+          <ul class="text-gray-800 text-sm font-semibold tracking-wide">
+            <li class="py-2 px-5 flex items-center relative group cursor-pointer hover:text-purple-400 transition-all duration-200" [ngClass]="{'justify-center': !sidebarOpen}"> <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg> <span class="ml-3" *ngIf="sidebarOpen">Special Page</span> 
+            <div class="opacity-0 w-28 bg-gray-800 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 -left-1 ml-14 px-3 pointer-events-none" *ngIf="!sidebarOpen">
+              Special Page
+            </div>
+            </li>
+            <li class="py-2 px-5 flex items-center relative group cursor-pointer hover:text-purple-400 transition-all duration-200" [ngClass]="{'justify-center': !sidebarOpen}"> <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg> <span class="ml-3" *ngIf="sidebarOpen">Authentication</span> 
+            <div class="opacity-0 w-28 bg-gray-800 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 -left-1 ml-14 px-3 pointer-events-none" *ngIf="!sidebarOpen">
+              Authentication
+            </div>
+            </li>
+            <li class="py-2 px-5 flex items-center relative group cursor-pointer hover:text-purple-400 transition-all duration-200" [ngClass]="{'justify-center': !sidebarOpen}"> <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> <span class="ml-3" *ngIf="sidebarOpen">Error</span>
+            <div class="opacity-0 w-28 bg-gray-800 text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 -left-1 ml-14 px-3 pointer-events-none" *ngIf="!sidebarOpen">
+              Error
+            </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-50 transition-all duration-200" [ngClass]="{'sm:w-full-60 sm:ml-60': sidebarOpen, 'sm:w-full-16 sm:ml-16': !sidebarOpen}">
+      <nav class="bg-gray-800">
+        <div class="px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+              <div class="relative text-gray-600">
+                <input
+                  class="bg-gray-800 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none hidden sm:block"
+                  type="search"
+                  name="search"
+                  placeholder="Search"
+                />
+                <button type="submit" class="absolute right-0 bottom-3 mt-5 mr-4">
+                  <svg
+                    class="text-gray-600 h-4 w-4 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1"
+                    id="Capa_1"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 56.966 56.966"
+                    style="enable-background: new 0 0 56.966 56.966"
+                    xml:space="preserve"
+                    width="512px"
+                    height="512px"
+                  >
+                    <path
+                      d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+                    />
+                  </svg>
+                </button>
+              </div> 
+              <div class="flex flex-wrap items-center">
+                <button
+                class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              >
+                <span class="sr-only">View notifications</span>
+                <!-- Heroicon name: bell -->
                 <svg
-                  class="text-gray-600 h-4 w-4 fill-current"
+                  class="h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  version="1.1"
-                  id="Capa_1"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 56.966 56.966"
-                  style="enable-background: new 0 0 56.966 56.966"
-                  xml:space="preserve"
-                  width="512px"
-                  height="512px"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path
-                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                   />
                 </svg>
               </button>
+              <!-- Profile dropdown -->
+              <div class="ml-3 relative">
+                <div>
+                  <button
+                    class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    id="user-menu"
+                    aria-haspopup="true"
+                    (click)="userMenuHidden = !userMenuHidden"
+                  >
+                    <span class="sr-only">Open user menu</span>
+                    <img
+                      class="h-8 w-8 rounded-full"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <!--
+                  Profile dropdown panel, show/hide based on dropdown state.
+  
+                  Entering: "transition ease-out duration-100"
+                    From: "transform opacity-0 scale-95"
+                    To: "transform opacity-100 scale-100"
+                  Leaving: "transition ease-in duration-75"
+                    From: "transform opacity-100 scale-100"
+                    To: "transform opacity-0 scale-95"
+                -->
+                <div
+                  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="user-menu"
+                  [ngClass]="{ hidden: userMenuHidden }"
+                >
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                    >Your Profile</a
+                  >
+  
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                    >Settings</a
+                  >
+  
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                    >Sign out</a
+                  >
+                </div>
+              </div>
+              </div>
+        </div>
+      </div>
+  
+      <!--
+        Mobile menu, toggle classes based on menu state.
+  
+        Open: "block", closed: "hidden"
+      -->
+      <div class="md:hidden" [ngClass]="{ hidden: mobNavHidden }">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+          <a
+            routerLin="dashboard"
+            class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Dashboard</a
+          >
+  
+          <a
+            href="#"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Team</a
+          >
+  
+          <a
+            href="#"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Projects</a
+          >
+  
+          <a
+            href="#"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Calendar</a
+          >
+  
+          <a
+            href="#"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Reports</a
+          >
+        </div>
+        <div class="pt-4 pb-3 border-t border-gray-700">
+          <div class="flex items-center px-5">
+            <div class="flex-shrink-0">
+              <img
+                class="h-10 w-10 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
             </div>
-
+            <div class="ml-3">
+              <div class="text-base font-medium leading-none text-white">
+                Tom Cook
+              </div>
+              <div class="text-sm font-medium leading-none text-gray-400">
+                tom@example.com
+              </div>
+            </div>
             <button
-              class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
             >
               <span class="sr-only">View notifications</span>
               <!-- Heroicon name: bell -->
@@ -98,218 +254,28 @@
                 />
               </svg>
             </button>
-
-            <!-- Profile dropdown -->
-            <div class="ml-3 relative">
-              <div>
-                <button
-                  class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  id="user-menu"
-                  aria-haspopup="true"
-                  (click)="userMenuHidden = !userMenuHidden"
-                >
-                  <span class="sr-only">Open user menu</span>
-                  <img
-                    class="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                </button>
-              </div>
-              <!--
-                Profile dropdown panel, show/hide based on dropdown state.
-
-                Entering: "transition ease-out duration-100"
-                  From: "transform opacity-0 scale-95"
-                  To: "transform opacity-100 scale-100"
-                Leaving: "transition ease-in duration-75"
-                  From: "transform opacity-100 scale-100"
-                  To: "transform opacity-0 scale-95"
-              -->
-              <div
-                class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="user-menu"
-                [ngClass]="{ hidden: userMenuHidden }"
-              >
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  >Your Profile</a
-                >
-
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  >Settings</a
-                >
-
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  >Sign out</a
-                >
-              </div>
-            </div>
+          </div>
+          <div class="mt-3 px-2 space-y-1">
+            <a
+              href="#"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+              >Your Profile</a
+            >
+  
+            <a
+              href="#"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+              >Settings</a
+            >
+  
+            <a
+              href="#"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+              >Sign out</a
+            >
           </div>
         </div>
-        <div class="-mr-2 flex md:hidden">
-          <!-- Mobile menu button -->
-          <button
-            class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-            (click)="mobNavHidden = !mobNavHidden"
-          >
-            <span class="sr-only">Open main menu</span>
-            <!--
-              Heroicon name: menu
-
-              Menu open: "hidden", Menu closed: "block"
-            -->
-            <svg
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-              [ngClass]="{ hidden: !mobNavHidden }"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-            <!--
-              Heroicon name: x
-
-              Menu open: "block", Menu closed: "hidden"
-            -->
-            <svg
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-              [ngClass]="{ hidden: mobNavHidden }"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
       </div>
+      </nav>
+        <router-outlet></router-outlet>
     </div>
-
-    <!--
-      Mobile menu, toggle classes based on menu state.
-
-      Open: "block", closed: "hidden"
-    -->
-    <div class="md:hidden" [ngClass]="{ hidden: mobNavHidden }">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <a
-          routerLin="dashboard"
-          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Dashboard</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Team</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Projects</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Calendar</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Reports</a
-        >
-      </div>
-      <div class="pt-4 pb-3 border-t border-gray-700">
-        <div class="flex items-center px-5">
-          <div class="flex-shrink-0">
-            <img
-              class="h-10 w-10 rounded-full"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-            />
-          </div>
-          <div class="ml-3">
-            <div class="text-base font-medium leading-none text-white">
-              Tom Cook
-            </div>
-            <div class="text-sm font-medium leading-none text-gray-400">
-              tom@example.com
-            </div>
-          </div>
-          <button
-            class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-          >
-            <span class="sr-only">View notifications</span>
-            <!-- Heroicon name: bell -->
-            <svg
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="mt-3 px-2 space-y-1">
-          <a
-            href="#"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
-            >Your Profile</a
-          >
-
-          <a
-            href="#"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
-            >Settings</a
-          >
-
-          <a
-            href="#"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
-            >Sign out</a
-          >
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <router-outlet></router-outlet>
-</div>

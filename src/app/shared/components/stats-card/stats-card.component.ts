@@ -9,7 +9,6 @@ import {
 @Component({
   selector: "app-stats-card",
   templateUrl: "./stats-card.component.html",
-  styleUrls: ["./stats-card.component.css"],
 })
 export class StatsCardComponent implements OnInit{
   @Input("amount") amount: number = 0;
@@ -28,7 +27,7 @@ export class StatsCardComponent implements OnInit{
       series: [],
       chart: {
         type: "area",
-        height: '135',
+        height: '100',
         
           toolbar: {
               show: false

@@ -8,7 +8,6 @@ import {
 @Component({
   selector: "app-stats-review",
   templateUrl: "./stats-review.component.html",
-  styleUrls: ["./stats-review.component.css"],
 })
 export class StatsReviewComponent implements OnInit {
   @Input("time") time: boolean = false;
