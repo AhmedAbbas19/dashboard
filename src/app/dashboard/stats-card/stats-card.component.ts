@@ -1,21 +1,23 @@
-import { Component, Input, OnInit, ViewChild } from "@angular/core";
-import { ChartOptions } from "../../models/apexChartOptions";
+import { Component, Input, ViewChild, OnInit } from "@angular/core";
+import { ChartOptions } from "../../shared/models/apexChartOptions";
 import {
   ChartComponent,
   ChartType
 } from "ng-apexcharts";
 
-@Component({
-  selector: "app-stats-review",
-  templateUrl: "./stats-review.component.html",
-})
-export class StatsReviewComponent implements OnInit {
-  @Input("time") time: boolean = false;
-  @Input("title") title: string = "Unknown";
 
+@Component({
+  selector: "app-stats-card",
+  templateUrl: "./stats-card.component.html",
+})
+export class StatsCardComponent implements OnInit{
+  @Input("amount") amount: number = 0;
+  @Input("rate") rate: number = 0;
+  @Input("title") title: string = "Unknown";
+  
   @Input("series") series: any[] = [];
   @Input("labels") labels: string[] = [];
-  @Input("type") type: string = "";
+  @Input("type") type: string = "Unknown";
   @Input("stroke") stroke: any = {};
   @ViewChild("chart") chart: ChartComponent = new ChartComponent();
   public chartOptions: ChartOptions;
@@ -25,32 +27,36 @@ export class StatsReviewComponent implements OnInit {
       series: [],
       chart: {
         type: "area",
-        height: '235',
+        height: '100',
+        
+          toolbar: {
+              show: false
+          },
+          width: '100%',
         zoom: {
           enabled: false
-        },
-        foreColor: '#a3a3a3'
+        }
       },
       dataLabels: {
         enabled: false
       },
       stroke: {
-        curve: "straight",
+        curve: "straight"
       },
       labels: [],
       xaxis: {
-        labels: {show : true},
+        labels: {show : false},
         axisBorder: {
-          show: true
+          show: false
         },
-        crosshairs: {show: false},
-        
+        crosshairs: {show: false}
       },
       yaxis: {
-        show: true,
-      }
+        show: false,
+      },
     };
   }
+
   ngOnInit(){
     this.chartOptions.series = [
       {
@@ -62,6 +68,4 @@ export class StatsReviewComponent implements OnInit {
     this.chartOptions.chart.type = <ChartType>this.type,
     this.chartOptions.stroke.curve = this.stroke.curve || this.chartOptions.stroke.curve;
   }
-
-  
 }

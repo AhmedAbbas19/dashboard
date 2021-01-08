@@ -1,0 +1,14 @@
+<div
+  class="sticky top-4 py-7 px-5 mt-5 rounded-lg bg-white shadow-sm md:shadow-md overflow-hidden"
+>
+<div class="w-full inline-flex items-center justify-between mb-4">
+  <h4 class="text-sm uppercase text-gray-800 leading-tight font-bold">
+    Latest Photos
+  </h4>
+</div>
+  <div class="grid grid-cols-12 gap-3">
+    <div class="col-span-4 group overflow-hidden" *ngFor="let img of images">
+        <img [src]="img" alt="" class="cursor-pointer max-w-full rounded-md transform hover:rotate-45 hover:scale-125 transition-all duration-200">
+    </div>
+  </div>
+  </div>

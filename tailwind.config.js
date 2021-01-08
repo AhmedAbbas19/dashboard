@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    enabled: true,
+    // enabled: true,
     content: ['./src/**/*.html'],
   },
   theme: {
@@ -9,6 +9,9 @@ module.exports = {
        'full-60': "calc(100% - 15rem)",
        'full-16': "calc(100% - 4rem)",
      }
-    }
+    },
+    fontFamily: {
+      'sans': ['overpass', 'system-ui'],
+     }
   }
 }

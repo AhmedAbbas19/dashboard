@@ -1,23 +1,21 @@
-import { Component, Input, ViewChild, OnInit } from "@angular/core";
-import { ChartOptions } from "../../models/apexChartOptions";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { ChartOptions } from "../../shared/models/apexChartOptions";
 import {
   ChartComponent,
   ChartType
 } from "ng-apexcharts";
 
-
 @Component({
-  selector: "app-stats-card",
-  templateUrl: "./stats-card.component.html",
+  selector: "app-stats-review",
+  templateUrl: "./stats-review.component.html",
 })
-export class StatsCardComponent implements OnInit{
-  @Input("amount") amount: number = 0;
-  @Input("rate") rate: number = 0;
+export class StatsReviewComponent implements OnInit {
+  @Input("time") time: boolean = false;
   @Input("title") title: string = "Unknown";
-  
+
   @Input("series") series: any[] = [];
   @Input("labels") labels: string[] = [];
-  @Input("type") type: string = "Unknown";
+  @Input("type") type: string = "";
   @Input("stroke") stroke: any = {};
   @ViewChild("chart") chart: ChartComponent = new ChartComponent();
   public chartOptions: ChartOptions;
@@ -27,36 +25,32 @@ export class StatsCardComponent implements OnInit{
       series: [],
       chart: {
         type: "area",
-        height: '100',
-        
-          toolbar: {
-              show: false
-          },
-          width: '100%',
+        height: '235',
         zoom: {
           enabled: false
-        }
+        },
+        foreColor: '#a3a3a3'
       },
       dataLabels: {
         enabled: false
       },
       stroke: {
-        curve: "straight"
+        curve: "straight",
       },
       labels: [],
       xaxis: {
-        labels: {show : false},
+        labels: {show : true},
         axisBorder: {
-          show: false
+          show: true
         },
-        crosshairs: {show: false}
+        crosshairs: {show: false},
+        
       },
       yaxis: {
-        show: false,
-      },
+        show: true,
+      }
     };
   }
-
   ngOnInit(){
     this.chartOptions.series = [
       {
@@ -68,4 +62,6 @@ export class StatsCardComponent implements OnInit{
     this.chartOptions.chart.type = <ChartType>this.type,
     this.chartOptions.stroke.curve = this.stroke.curve || this.chartOptions.stroke.curve;
   }
+
+  
 }
